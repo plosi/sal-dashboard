@@ -21,6 +21,7 @@ db.initialize_db()
 data_trigger = reactive.Value(0)
 
 # Load credentials from .secrets.json
+SECRETS = {}
 try:
     with open(".secrets.json", "r") as secrets_file:
         SECRETS = json.load(secrets_file)
