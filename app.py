@@ -25,6 +25,8 @@ try:
     with open(".secrets.json", "r") as secrets_file:
         SECRETS = json.load(secrets_file)
 except:
+    print("No 'secrets' file found")
+finally:
     PWD = os.getenv("PWD")
 
 # Reactive values to track login state and session expiration
@@ -318,7 +320,7 @@ def server(input, output, session):
         password = input.password()
 
         # Validate credentials
-        if (username in SECRETS["users"] and SECRETS["users"][username] == password) or (username == "wash" and password == PWD):
+        if (username in SECRETS["users"] and SECRETS["users"][username] == password) or (username == "sal" and password == PWD):
             is_logged_in.set(True)
             last_login.set(datetime.now())
             ui.notification_show("Login successful!", type="success")
