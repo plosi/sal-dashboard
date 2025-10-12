@@ -27,7 +27,7 @@ try:
         SECRETS = json.load(secrets_file)
 except:
     print("No 'secrets' file found")
-PWD = os.getenv("PWD")
+PWD = os.getenv("SAL_PASSWORD")
 
 # Reactive values to track login state and session expiration
 is_logged_in = reactive.Value(False)
@@ -333,7 +333,6 @@ def server(input, output, session):
                 last_login.set(datetime.now())
                 ui.notification_show("Login successful!", type="success")
             else:
-                print(f"The env pwd is: {PWD}")
                 ui.notification_show("Invalid username or password.", type="error")
 
     # Optional: Add a session timeout (e.g., 30 days)
