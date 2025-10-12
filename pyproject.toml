@@ -1,0 +1,18 @@
+[project]
+name = "sal-dashboard"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=1.4.0",
+    "fastexcel>=0.16.0",
+    "great-tables>=0.18.0",
+    "numpy>=2.3.3",
+    "plotly>=6.3.0",
+    "polars>=1.33.1",
+    "pyarrow>=21.0.0",
+    "shiny>=1.5.0",
+    "shinywidgets>=0.7.0",
+    "xlsxwriter>=3.2.9",
+]
