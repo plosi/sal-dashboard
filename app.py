@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, date
 
 import re
 import json
+import os
 import plotly.express as px
 import plotly.io as pio
 pio.templates.default = "ggplot2"
@@ -20,8 +21,14 @@ db.initialize_db()
 data_trigger = reactive.Value(0)
 
 # Load credentials from .secrets.json
-with open(".secrets.json", "r") as secrets_file:
-    SECRETS = json.load(secrets_file)
+try:
+    with open(".secrets.json", "r") as secrets_file:
+        SECRETS = json.load(secrets_file)
+except:
+    user = os.getenv("USER")
+    pwd = os.getenv("PWD")
+    SECRETS["users"] = user
+    SECRETS["users"][user] = pwd
 
 # Reactive values to track login state and session expiration
 is_logged_in = reactive.Value(False)
