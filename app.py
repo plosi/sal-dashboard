@@ -29,6 +29,7 @@ except:
     print("No 'secrets' file found")
 finally:
     PWD = os.getenv("PWD")
+    print(PWD)
 
 # Reactive values to track login state and session expiration
 is_logged_in = reactive.Value(False)
