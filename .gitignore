@@ -13,4 +13,4 @@ wheels/
 .secrets.json
 
 # Database backups
-./data/*.xlsx
+data/*.xlsx
