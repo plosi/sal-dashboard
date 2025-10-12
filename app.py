@@ -320,12 +320,20 @@ def server(input, output, session):
         password = input.password()
 
         # Validate credentials
-        if (username in SECRETS["users"] and SECRETS["users"][username] == password) or (username == "sal" and password == PWD):
-            is_logged_in.set(True)
-            last_login.set(datetime.now())
-            ui.notification_show("Login successful!", type="success")
+        if SECRETS:
+            if username in SECRETS["users"] and SECRETS["users"][username] == password:
+                is_logged_in.set(True)
+                last_login.set(datetime.now())
+                ui.notification_show("Login successful!", type="success")
+            else:
+                ui.notification_show("Invalid username or password.", type="error")
         else:
-            ui.notification_show("Invalid username or password.", type="error")
+            if username == "sal" and password == PWD:
+                is_logged_in.set(True)
+                last_login.set(datetime.now())
+                ui.notification_show("Login successful!", type="success")
+            else:
+                ui.notification_show("Invalid username or password.", type="error")
 
     # Optional: Add a session timeout (e.g., 30 days)
     @reactive.Effect
