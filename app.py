@@ -27,7 +27,6 @@ try:
         SECRETS = json.load(secrets_file)
 except:
     print("No 'secrets' file found")
-finally:
     PWD = os.getenv("PWD")
     print(PWD)
 
