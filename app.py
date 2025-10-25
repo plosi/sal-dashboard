@@ -439,7 +439,7 @@ def server(input, output, session):
             ui.modal_remove()
             data_trigger.set(data_trigger.get() + 1)
         
-        db.insert("advisors", new_advisor)
+        db.insert_row("advisors", new_advisor)
     
     @reactive.Effect
     @reactive.event(input[f"edit_advisor_btn_"])
@@ -622,7 +622,7 @@ def server(input, output, session):
             if not new_department["name"] or not new_department["code"]:
                 ui.notification_show("Error adding department: Name and Code are required fields.", type="error")
                 raise ValueError("Name and Code are required fields.")
-            db.insert("departments", new_department)
+            db.insert_row("departments", new_department)
         except Exception as e:
             ui.notification_show(f"Error adding department: {e}", type="error")
         finally:
@@ -1711,7 +1711,7 @@ def server(input, output, session):
                 ui.modal_remove()
                 data_trigger.set(data_trigger.get() + 1)
             
-            db.insert("country_focals", new_focal)
+            db.insert_row("country_focals", new_focal)
         
         @reactive.Effect
         @reactive.event(input[f"edit_country_focal_{dept}_btn_"])
